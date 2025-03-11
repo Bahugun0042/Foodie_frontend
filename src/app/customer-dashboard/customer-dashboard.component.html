@@ -1,0 +1,47 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="search-bar">
+    <i class="fas fa-search" style="color: #12a594"></i>
+    <input
+      type="text"
+      placeholder="Search dishes or restaurants..."
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+      style="border-color: #12a594"
+    />
+  </div>
+  <div class="cart" (click)="navigateToCart()">
+    <a routerLink="/customer/cart">
+      <i class="fas fa-shopping-cart" style="color: #ffffff"></i>
+      <span class="badge" style="background-color: #ff6f61">{{
+        cartItemCount
+      }}</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Dish Cards -->
+<div class="dish-grid mt-5 mb-5">
+  <div
+    *ngFor="let dish of filteredDishes"
+    class="dish-card animate__animated animate__fadeIn"
+  >
+    <img [src]="dish.image" alt="{{ dish.name }}" class="dish-image" />
+    <div class="dish-details">
+      <h3 style="color: #12a594">{{ dish.name }}</h3>
+      <p style="color: #2d3748">{{ dish.description }}</p>
+      <p style="color: #2d3748">
+        <strong>Price:</strong> Rs.{{ dish.price }}/-
+      </p>
+      <p style="color: #2d3748">
+        <strong>Restaurant:</strong> {{ dish.restaurant }}
+      </p>
+      <button
+        (click)="addToCart(dish)"
+        style="background-color: #ff6f61; border: none"
+      >
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>

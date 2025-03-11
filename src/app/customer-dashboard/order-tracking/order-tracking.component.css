@@ -1,0 +1,145 @@
+/* General Styles */
+.order-tracking-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f0f4f8;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.tracking-title {
+  text-align: center;
+  color: #2d3748;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  color: #2d3748;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* Order Details */
+.order-details {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  font-size: 16px;
+  color: #2d3748;
+}
+
+.item-price {
+  font-size: 16px;
+  color: #12a594;
+  font-weight: bold;
+}
+
+.total-price {
+  text-align: right;
+  font-size: 18px;
+  color: #2d3748;
+  margin-top: 10px;
+}
+
+/* Delivery Address */
+.delivery-address {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.address {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Order Status Timeline */
+.order-status {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.timeline-step {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 0 5px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-step.active {
+  background-color: #12a594;
+  color: white;
+  transform: translateY(-5px);
+}
+
+.step-number {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.step-text {
+  font-size: 14px;
+}
+
+/* Estimated Delivery Time */
+.delivery-time {
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.time {
+  font-size: 18px;
+  color: #12a594;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

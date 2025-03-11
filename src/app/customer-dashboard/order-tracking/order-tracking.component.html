@@ -1,0 +1,56 @@
+<div class="order-tracking-container mt-5 mb-5">
+  <h2 class="tracking-title">Order Tracking</h2>
+
+  <!-- Order Details -->
+  <div class="order-details">
+    <h3 class="section-title">Order Details</h3>
+    <div *ngFor="let item of order.items" class="order-item">
+      <p class="item-name">{{ item.dish.name }} (x{{ item.quantity }})</p>
+      <p class="item-price">Rs.{{ item.dish.price * item.quantity }}/-</p>
+    </div>
+    <p class="total-price">
+      <strong>Total:</strong> Rs.{{ order.totalPrice }}/-
+    </p>
+  </div>
+
+  <!-- Delivery Address -->
+  <div class="delivery-address">
+    <h3 class="section-title">Delivery Address</h3>
+    <p class="address">{{ order.deliveryAddress }}</p>
+  </div>
+
+  <!-- Order Status Timeline -->
+  <div class="order-status">
+    <h3 class="section-title">Order Status</h3>
+    <div class="timeline">
+      <div
+        class="timeline-step"
+        [class.active]="order.status === 'Order Placed'"
+      >
+        <span class="step-number">1</span>
+        <span class="step-text">Order Placed</span>
+      </div>
+      <div class="timeline-step" [class.active]="order.status === 'Preparing'">
+        <span class="step-number">2</span>
+        <span class="step-text">Preparing</span>
+      </div>
+      <div
+        class="timeline-step"
+        [class.active]="order.status === 'Out for Delivery'"
+      >
+        <span class="step-number">3</span>
+        <span class="step-text">Out for Delivery</span>
+      </div>
+      <div class="timeline-step" [class.active]="order.status === 'Delivered'">
+        <span class="step-number">4</span>
+        <span class="step-text">Delivered</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estimated Delivery Time -->
+  <div class="delivery-time">
+    <h3 class="section-title">Estimated Delivery Time</h3>
+    <p class="time">30 minutes</p>
+  </div>
+</div>

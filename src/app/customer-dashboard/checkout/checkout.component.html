@@ -1,0 +1,80 @@
+<div class="checkout-container mt-5 mb-5">
+  <h2 class="checkout-title">Checkout</h2>
+
+  <!-- Cart Items -->
+  <div class="cart-items">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img
+        [src]="item.dish.image"
+        alt="{{ item.dish.name }}"
+        class="item-image"
+      />
+      <div class="item-details">
+        <h3 class="item-name">{{ item.dish.name }}</h3>
+        <p class="item-description">{{ item.dish.description }}</p>
+        <p class="item-price">
+          <strong>Price:</strong> Rs.{{ item.dish.price }}/-
+        </p>
+        <p class="item-quantity">
+          <strong>Quantity:</strong> {{ item.quantity }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delivery Address -->
+  <div class="form-group">
+    <label for="deliveryAddress" class="form-label">Delivery Address</label>
+    <textarea
+      id="deliveryAddress"
+      [(ngModel)]="deliveryAddress"
+      placeholder="Enter your delivery address"
+      required
+      class="form-input"
+    ></textarea>
+  </div>
+
+  <!-- Payment Method -->
+  <div class="form-group">
+    <label for="paymentMethod" class="form-label">Payment Method</label>
+    <select
+      id="paymentMethod"
+      [(ngModel)]="paymentMethod"
+      (change)="onPaymentMethodChange()"
+      class="form-input"
+    >
+      <option value="credit-card">Credit Card</option>
+      <option value="debit-card">Debit Card</option>
+      <option value="paypal">PayPal</option>
+      <option value="cash-on-delivery">Cash on Delivery</option>
+    </select>
+  </div>
+
+  <!-- Stripe Card Element -->
+  <div
+    *ngIf="paymentMethod === 'credit-card' || paymentMethod === 'debit-card'"
+    class="stripe-card"
+  >
+    <div id="card-element" class="card-element"></div>
+    <div id="card-errors" role="alert" class="card-errors">{{ cardError }}</div>
+  </div>
+
+  <!-- Total Price -->
+  <div class="total-price">
+    <p><strong>Total:</strong> Rs.{{ getTotalPrice() }}/-</p>
+  </div>
+
+  <!-- Confirm Order Button -->
+  <button
+    (click)="confirmOrder()"
+    class="confirm-button"
+    [disabled]="isProcessing"
+  >
+    {{ isProcessing ? "Processing..." : "Confirm Order" }}
+  </button>
+
+  <!-- Payment Success Message -->
+  <div *ngIf="paymentSuccess" class="success-message">
+    <p>Payment successful! Redirecting to order tracking...</p>
+  </div>
+</div>

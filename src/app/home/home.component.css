@@ -1,0 +1,108 @@
+/* General Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #002115;
+}
+
+.nav-link {
+  font-size: 1rem;
+  margin-left: 20px;
+  transition: color 0.3s ease;
+  color: #002115;
+}
+
+.nav-link:hover {
+  color: #ffffff !important; /* Coral color on hover */
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 100px 0;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.hero-section .btn {
+  font-size: 1rem;
+  padding: 12px 30px;
+  border-radius: 25px;
+  transition: transform 0.3s ease;
+}
+
+.hero-section .btn:hover {
+  transform: scale(1.05);
+}
+
+/* About Us Section */
+#about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+#about p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Features Section */
+#features .feature-item {
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+#features .feature-item:hover {
+  transform: translateY(-10px);
+}
+
+/* How It Works Section */
+#how-it-works .step {
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+#how-it-works .step:hover {
+  transform: translateY(-10px);
+}
+
+/* Testimonials Section */
+#testimonials .testimonial {
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+#testimonials .testimonial:hover {
+  transform: translateY(-10px);
+}
+
+/* Footer */
+footer {
+  font-size: 0.9rem;
+}
+.size {
+  width: 400px;
+  height: 200px;
+}
