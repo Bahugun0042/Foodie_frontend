@@ -2,18 +2,20 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router'; // Import RouterOutlet
 import { CartService } from '../services/cart.service'; // Import CartService
 
 @Component({
   selector: 'app-customer-dashboard',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,RouterOutlet],
   templateUrl: './customer-dashboard.component.html',
   styleUrls: ['./customer-dashboard.component.css'],
 })
 export class CustomerDashboardComponent {
   searchQuery: string = '';
   cartItemCount: number = 0;
+  userName: string = '';
   dishes = [
     {
       id: 1,
@@ -130,9 +132,10 @@ export class CustomerDashboardComponent {
   ]
   ;
   filteredDishes = this.dishes;
-
   constructor(private router: Router, private cartService: CartService) {
     // Initialize cart item count
+    this.userName = localStorage.getItem('name') || 'Geust'; // Get user name from local storage
+    alert('Welcome ' + this.userName);
     this.cartItemCount = this.cartService.getCartItemCount();
   }
 
@@ -152,5 +155,10 @@ export class CustomerDashboardComponent {
 
   navigateToCart() {
     this.router.navigate(['/customer/cart']);
+  }
+  logout() { // Remove authentication token
+    localStorage.removeItem('userId');    // Remove user ID
+    localStorage.removeItem('role');      // Remove user role
+    this.router.navigate(['/login']);     // Redirect to login
   }
 }

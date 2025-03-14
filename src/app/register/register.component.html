@@ -21,7 +21,11 @@
     </div>
 
     <!-- Customer Form -->
-    <div *ngIf="role === 'customer'" [formGroup]="customerForm">
+    <form
+      *ngIf="role === 'customer'"
+      [formGroup]="customerForm"
+      (ngSubmit)="onSubmit()"
+    >
       <div class="form-group">
         <label for="name" style="color: #2d3748">Full Name</label>
         <input
@@ -134,10 +138,14 @@
       >
         Register
       </button>
-    </div>
+    </form>
 
     <!-- Restaurant Form -->
-    <div *ngIf="role === 'restaurant'" [formGroup]="restaurantForm">
+    <form
+      *ngIf="role === 'restaurant'"
+      [formGroup]="restaurantForm"
+      (ngSubmit)="onSubmit()"
+    >
       <div class="form-group">
         <label for="restaurantName" style="color: #2d3748"
           >Restaurant Name</label
@@ -297,6 +305,19 @@
                   style="border-color: #12a594"
                 />
               </div>
+              <div class="form-group">
+                <label for="picture of dish" style="color: #2d3748"
+                  >Picture of the dish</label
+                >
+                <input
+                  type="file"
+                  class="form-control"
+                  id="price"
+                  formControlName="picture of dish"
+                  required
+                  style="border-color: #12a594"
+                />
+              </div>
               <button
                 type="button"
                 class="btn btn-danger"
@@ -329,19 +350,6 @@
           style="border-color: #12a594"
         />
       </div>
-      <div class="form-group">
-        <label for="paymentMethods" style="color: #2d3748"
-          >Payment Methods</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="paymentMethods"
-          formControlName="paymentMethods"
-          required
-          style="border-color: #12a594"
-        />
-      </div>
       <button
         type="submit"
         class="btn btn-primary mt-3"
@@ -349,10 +357,14 @@
       >
         Register
       </button>
-    </div>
+    </form>
 
     <!-- Delivery Form -->
-    <div *ngIf="role === 'delivery'" [formGroup]="deliveryForm">
+    <form
+      *ngIf="role === 'delivery'"
+      [formGroup]="deliveryForm"
+      (ngSubmit)="onSubmit()"
+    >
       <div class="form-group">
         <label for="name" style="color: #2d3748">Full Name</label>
         <input
@@ -432,17 +444,6 @@
           style="border-color: #12a594"
         />
       </div>
-      <div class="form-group">
-        <label for="deliveryAreas" style="color: #2d3748">Delivery Areas</label>
-        <input
-          type="text"
-          class="form-control"
-          id="deliveryAreas"
-          formControlName="deliveryAreas"
-          required
-          style="border-color: #12a594"
-        />
-      </div>
       <button
         type="submit"
         class="btn btn-primary mt-3"
@@ -450,6 +451,6 @@
       >
         Register
       </button>
-    </div>
+    </form>
   </div>
 </div>

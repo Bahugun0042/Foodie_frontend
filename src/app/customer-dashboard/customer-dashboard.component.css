@@ -111,3 +111,22 @@
 .dish-details button:hover {
   background-color: #ff3b2f;
 }
+.cart-logout-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logout-btn {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  background-color: #e05750;
+}

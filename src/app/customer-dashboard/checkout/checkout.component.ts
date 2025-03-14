@@ -43,7 +43,7 @@ export class CheckoutComponent implements OnInit {
   async initializeStripe() {
     try {
       // Load Stripe.js
-      this.stripe = await loadStripe('publisher _key');
+      this.stripe = await loadStripe('pk_test_51R0ru1GHm6069Z1nL6UUJoI926avGZrZr3dX8nuq0VTiJ1YGMfsepQeFJ5gD5LMudWMEE7HnuPKOwDJZ0Hw5GO7U00IROAUD3W');
       console.log('Stripe loaded:', this.stripe); // Debugging
 
       if (this.stripe) {

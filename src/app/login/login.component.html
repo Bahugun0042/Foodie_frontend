@@ -26,6 +26,21 @@
           style="border-color: #12a594"
         />
       </div>
+      <div class="form-group">
+        <label for="role" style="color: #2d3748">Select Role</label>
+        <select
+          id="role"
+          class="form-control"
+          [(ngModel)]="role"
+          name="role"
+          required
+          style="border-color: #12a594"
+        >
+          <option value="customer">Customer</option>
+          <option value="restaurant">Restaurant Owner</option>
+          <option value="delivery">Delivery Partner</option>
+        </select>
+      </div>
       <button
         type="submit"
         class="btn btn-primary mt-3"
@@ -34,6 +49,9 @@
         Login
       </button>
     </form>
+    <p class="text-danger text-center mt-2" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
     <p class="text-center mt-3 reg" style="color: #2d3748">
       Don't have an account?
       <a routerLink="/register" (click)="navigate()" style="color: #12a594"

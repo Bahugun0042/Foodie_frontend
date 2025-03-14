@@ -1,4 +1,5 @@
 <!-- Navbar -->
+<!-- Navbar -->
 <nav class="navbar">
   <div class="search-bar">
     <i class="fas fa-search" style="color: #12a594"></i>
@@ -10,17 +11,29 @@
       style="border-color: #12a594"
     />
   </div>
-  <div class="cart" (click)="navigateToCart()">
-    <a routerLink="/customer/cart">
-      <i class="fas fa-shopping-cart" style="color: #ffffff"></i>
-      <span class="badge" style="background-color: #ff6f61">{{
-        cartItemCount
-      }}</span>
-    </a>
+
+  <div class="cart-logout-container">
+    <!-- Cart Icon -->
+    <div class="cart" (click)="navigateToCart()">
+      <a routerLink="/customer/cart">
+        <i class="fas fa-shopping-cart" style="color: #ffffff"></i>
+        <span class="badge" style="background-color: #ff6f61">
+          {{ cartItemCount }}
+        </span>
+      </a>
+    </div>
+
+    <!-- Logout Button -->
+    <button class="logout-btn" (click)="logout()">Logout</button>
   </div>
 </nav>
+<h2 style="text-align: center; color: #ff6f61" class="mt-5">
+  Welcome {{ userName }}
+</h2>
+<!-- Router outlet for child routes -->
+<router-outlet></router-outlet>
 
-<!-- Dish Cards -->
+<!-- Dish Grid -->
 <div class="dish-grid mt-5 mb-5">
   <div
     *ngFor="let dish of filteredDishes"

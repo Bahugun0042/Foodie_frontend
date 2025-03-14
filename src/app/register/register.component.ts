@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,7 @@ export class RegisterComponent {
   restaurantForm: FormGroup;
   deliveryForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     // Initialize Customer Form
     this.customerForm = this.fb.group({
       name: ['', Validators.required],
@@ -40,11 +42,10 @@ export class RegisterComponent {
       city: ['', Validators.required],
       state: ['', Validators.required],
       zip: ['', Validators.required],
-      otherbranches: ['', Validators.required],
+      deliveryAreas: ['', Validators.required],
       cuisineType: ['', Validators.required],
       dishes: this.fb.array([]), // Initialize dishes as a FormArray
       openingHours: ['', Validators.required],
-      paymentMethods: ['', Validators.required]
     });
 
     // Initialize Delivery Form
@@ -56,7 +57,6 @@ export class RegisterComponent {
       vehicleType: ['', Validators.required],
       vehicleNumber: ['', Validators.required],
       workingHours: ['', Validators.required],
-      deliveryAreas: ['', Validators.required]
     });
   }
 
@@ -70,7 +70,8 @@ export class RegisterComponent {
     const dishGroup = this.fb.group({
       dishName: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', Validators.required]
+      price: ['', Validators.required],
+      image: [null]
     });
     this.dishes.push(dishGroup);
   }
@@ -87,12 +88,38 @@ export class RegisterComponent {
 
   // Handle form submission
   onSubmit() {
+    alert('Form submitted!');
+    alert('Form submitted: ' + this.role);
     if (this.role === 'customer' && this.customerForm.valid) {
-      console.log('Customer Form Submitted:', this.customerForm.value);
+      this.authService.registerCustomer(this.customerForm.value).subscribe({
+        next: (response) => {
+          console.log('Customer registered successfully:', response);
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.error('Customer registration failed:', error);
+        },
+      });
     } else if (this.role === 'restaurant' && this.restaurantForm.valid) {
-      console.log('Restaurant Form Submitted:', this.restaurantForm.value);
+      this.authService.registerRestaurant(this.restaurantForm.value).subscribe({
+        next: (response) => {
+          console.log('Restaurant registered successfully:', response);
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.error('Restaurant registration failed:', error);
+        },
+      });
     } else if (this.role === 'delivery' && this.deliveryForm.valid) {
-      console.log('Delivery Form Submitted:', this.deliveryForm.value);
+      this.authService.registerDelivery(this.deliveryForm.value).subscribe({
+        next: (response) => {
+          console.log('Delivery person registered successfully:', response);
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.error('Delivery person registration failed:', error);
+        },
+      });
     } else {
       console.log('Form is invalid');
     }
