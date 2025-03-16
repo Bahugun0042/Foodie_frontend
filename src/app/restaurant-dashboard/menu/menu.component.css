@@ -1,0 +1,126 @@
+/* Container styling */
+.container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styling */
+h2 {
+  color: #343a40;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Card styling for each order */
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  color: #007bff;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.card-text {
+  color: #495057;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.card-text strong {
+  color: #343a40;
+}
+
+/* List group styling for items */
+.list-group {
+  margin-top: 15px;
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #e9ecef;
+  padding: 10px 15px;
+  background-color: transparent;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.list-group-item strong {
+  color: #007bff;
+  font-size: 1rem;
+}
+
+.list-group-item p {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-bottom: 0;
+}
+
+/* Alert styling for no orders */
+.alert-info {
+  background-color: #e2f0ff;
+  border-color: #b8daff;
+  color: #004085;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+  }
+
+  .list-group-item strong {
+    font-size: 0.95rem;
+  }
+
+  .list-group-item p {
+    font-size: 0.8rem;
+  }
+}
+.card {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+}
+
+.alert-info {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}

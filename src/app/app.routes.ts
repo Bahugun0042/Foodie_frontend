@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { RestaurantDashboardComponent } from './restaurant-dashboard/restaurant-dashboard.component';
 import { DeliveryDashboardComponent } from './delivery-dashboard/delivery-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { restaurantDashboardRoutes } from './restaurant-dashboard/restaurant-dashboard.routes';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,10 @@ export const routes: Routes = [
   { 
     path: 'customer', 
     loadChildren: () => import('./customer-dashboard/customer-dashboard.routes').then(m => m.customerDashboardRoutes)
+  },
+  { 
+    path: 'restaurant', 
+    loadChildren: () => import('./restaurant-dashboard/restaurant-dashboard.routes').then(m => m.restaurantDashboardRoutes)
   },
   { path: 'restaurant', component: RestaurantDashboardComponent },
   { path: 'delivery', component: DeliveryDashboardComponent },

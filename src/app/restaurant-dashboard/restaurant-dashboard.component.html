@@ -1,1 +1,75 @@
-<p>restaurant-dashboard works!</p>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid">
+    <!-- Restaurant Dashboard Brand -->
+    <a class="navbar-brand" href="#">Restaurant Dashboard</a>
+
+    <!-- Navbar Toggler for Mobile -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateToMenu()" routerLink="menu"
+            >Menu</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateToOrders()" routerLink="orders"
+            >Orders</a
+          >
+        </li>
+        <li class="nav-item logout-btn">
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Welcome Section -->
+<div class="container mt-5 text-center">
+  <h2 class="text-danger">Welcome, Restaurant !!!</h2>
+</div>
+
+<!-- Informative Cards -->
+<div class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" (click)="navigateToMenu()">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Manage Menu</h5>
+          <p class="card-text">
+            Add, edit, or remove dishes from your menu to keep it up-to-date.
+          </p>
+          <a routerLink="menu" class="btn btn-primary w-100">Go to Menu</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-sm" (click)="navigateToMenu()">
+        <div class="card-body">
+          <h5 class="card-title">View Orders</h5>
+          <p class="card-text">
+            Track and manage all incoming orders from your customers.
+          </p>
+          <a routerLink="orders" class="btn btn-primary w-100">Go to Orders</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Router Outlet for Child Routes -->
+<router-outlet></router-outlet>

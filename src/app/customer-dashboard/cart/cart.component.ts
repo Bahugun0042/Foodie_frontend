@@ -17,6 +17,7 @@ export class CartComponent {
     // Subscribe to cart items
     this.cartService.currentCartItems.subscribe((items) => {
       this.cartItems = items;
+      console.log('Cart Items in Component:', this.cartItems); // Log cart items
     });
   }
 

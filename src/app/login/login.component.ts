@@ -22,19 +22,34 @@ export class LoginComponent {
   onSubmit() {
     this.authService.login(this.email, this.password, this.role).subscribe({
       next: (response) => {
-        console.log('Login successful:', response); // Store JWT token
-        localStorage.setItem('userId', response.userId);    // Store unique user ID
-        localStorage.setItem('name', response.name);    // Store unique user ID
-        localStorage.setItem('role', response.role); 
-        console.log('Stored name:', localStorage.getItem('name'));
-        console.log('Stored userId:', localStorage.getItem('userId'));
-        console.log('Stored role:', localStorage.getItem('role')); 
+
         // Navigate to respective dashboards based on role
         if (response.role === 'customer') {
+          console.log('Login successful:', response); // Store JWT token
+          localStorage.setItem('userId', response.userId);    // Store unique user ID
+          localStorage.setItem('name', response.name);    // Store unique user ID
+          localStorage.setItem('role', response.role); 
+          console.log('Stored name:', localStorage.getItem('name'));
+          console.log('Stored userId:', localStorage.getItem('userId'));
+          console.log('Stored role:', localStorage.getItem('role')); 
           this.router.navigate(['/customer']);
         } else if (response.role === 'restaurant') {
+          console.log('Login successful:', response); // Store JWT token
+          localStorage.setItem('restaurantId', response.restaurantId);    // Store unique user ID
+          localStorage.setItem('restaurantName', response.restaurantName);    // Store unique user ID
+          localStorage.setItem('role', response.role); 
+          console.log('Stored name:', localStorage.getItem('restaurantName'));
+          console.log('Stored userId:', localStorage.getItem('restaurantId'));
+          console.log('Stored role:', localStorage.getItem('role')); 
           this.router.navigate(['/restaurant']);
         } else if (response.role === 'delivery') {
+          console.log('Login successful:', response); // Store JWT token
+          localStorage.setItem('deliveryId', response.deliveryId);    // Store unique user ID
+          localStorage.setItem('deliveryName', response.deliveryName);    // Store unique user ID
+          localStorage.setItem('role', response.role); 
+          console.log('Stored name:', localStorage.getItem('deliveryName'));
+          console.log('Stored userId:', localStorage.getItem('deliveryId'));
+          console.log('Stored role:', localStorage.getItem('role')); 
           this.router.navigate(['/delivery']);
         }
       },

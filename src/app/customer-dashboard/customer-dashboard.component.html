@@ -1,60 +1,71 @@
 <!-- Navbar -->
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="search-bar">
-    <i class="fas fa-search" style="color: #12a594"></i>
-    <input
-      type="text"
-      placeholder="Search dishes or restaurants..."
-      [(ngModel)]="searchQuery"
-      (input)="onSearch()"
-      style="border-color: #12a594"
-    />
-  </div>
-
-  <div class="cart-logout-container">
-    <!-- Cart Icon -->
-    <div class="cart" (click)="navigateToCart()">
-      <a routerLink="/customer/cart">
-        <i class="fas fa-shopping-cart" style="color: #ffffff"></i>
-        <span class="badge" style="background-color: #ff6f61">
-          {{ cartItemCount }}
-        </span>
-      </a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid">
+    <!-- Search Bar -->
+    <div class="search-bar d-flex align-items-center">
+      <i class="fas fa-search me-2" style="color: #12a594"></i>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search dishes or restaurants..."
+        [(ngModel)]="searchQuery"
+        (input)="onSearch()"
+        style="border-color: #12a594"
+      />
     </div>
 
-    <!-- Logout Button -->
-    <button class="logout-btn" (click)="logout()">Logout</button>
+    <!-- Cart and Logout -->
+    <div class="cart-logout-container d-flex align-items-center">
+      <!-- Cart Icon -->
+      <div class="cart position-relative me-3" (click)="navigateToCart()">
+        <a routerLink="/customer/cart" class="text-white text-decoration-none">
+          <i class="fas fa-shopping-cart"></i>
+          <span
+            class="badge bg-danger position-absolute top-0 start-100 translate-middle"
+          >
+            {{ cartItemCount }}
+          </span>
+        </a>
+      </div>
+
+      <!-- Logout Button -->
+      <button class="logout-btn btn btn-danger" (click)="logout()">
+        Logout
+      </button>
+    </div>
   </div>
 </nav>
-<h2 style="text-align: center; color: #ff6f61" class="mt-5">
-  Welcome {{ userName }}
-</h2>
+
+<!-- Welcome Message -->
+<div class="container mt-5 text-center">
+  <h2 class="text-danger">Welcome {{ userName }}</h2>
+</div>
+
 <!-- Router outlet for child routes -->
 <router-outlet></router-outlet>
 
 <!-- Dish Grid -->
-<div class="dish-grid mt-5 mb-5">
-  <div
-    *ngFor="let dish of filteredDishes"
-    class="dish-card animate__animated animate__fadeIn"
-  >
-    <img [src]="dish.image" alt="{{ dish.name }}" class="dish-image" />
-    <div class="dish-details">
-      <h3 style="color: #12a594">{{ dish.name }}</h3>
-      <p style="color: #2d3748">{{ dish.description }}</p>
-      <p style="color: #2d3748">
-        <strong>Price:</strong> Rs.{{ dish.price }}/-
-      </p>
-      <p style="color: #2d3748">
-        <strong>Restaurant:</strong> {{ dish.restaurant }}
-      </p>
-      <button
-        (click)="addToCart(dish)"
-        style="background-color: #ff6f61; border: none"
-      >
-        Add to Cart
-      </button>
+<div class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let dish of filteredDishes" class="col">
+      <div class="card h-100 dish-card shadow-sm">
+        <img
+          [src]="dish.picture"
+          alt="{{ dish.dishName }}"
+          class="card-img-top dish-image"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ dish.dishName }}</h5>
+          <p class="card-text">{{ dish.description }}</p>
+          <p class="card-text"><strong>Price:</strong>Rs. {{ dish.price }}/-</p>
+          <p class="card-text">
+            <strong>Restaurant:</strong> {{ dish.restaurantName }}
+          </p>
+          <button class="btn btn-primary w-100" (click)="addToCart(dish)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

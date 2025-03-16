@@ -71,7 +71,7 @@ export class RegisterComponent {
       dishName: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', Validators.required],
-      image: [null]
+      picture: ['', Validators.required],
     });
     this.dishes.push(dishGroup);
   }

@@ -8,25 +8,33 @@ export class CartService {
   private cartItems = new BehaviorSubject<{ dish: any; quantity: number }[]>([]);
   currentCartItems = this.cartItems.asObservable();
 
- 
+  // Method to generate a unique key for a dish
+  generateUniqueKey(dish: any): string {
+    return `${dish.dishName}-${dish.restaurantName}`; // Combine dishName and restaurantName
+  }
+
   addToCart(dish: any) {
     const currentItems = this.cartItems.getValue();
-    const existingItem = currentItems.find((item) => item.dish.id === dish.id);
+    const uniqueKey = this.generateUniqueKey(dish); // Generate a unique key for the dish
+    const existingItem = currentItems.find((item) => this.generateUniqueKey(item.dish) === uniqueKey); // Use the unique key for comparison
 
     if (existingItem) {
-      existingItem.quantity += 1;
+      existingItem.quantity += 1; // Increase quantity if the dish already exists
     } else {
-      currentItems.push({ dish, quantity: 1 });
+      currentItems.push({ dish, quantity: 1 }); // Add new dish to the cart
     }
 
-    this.cartItems.next([...currentItems]);
+    this.cartItems.next([...currentItems]); // Update the cart items
+    console.log('Cart Items:', currentItems); // Log the updated cart items
   }
 
-  removeFromCart(dish: any) {
-    const currentItems = this.cartItems.getValue();
-    const updatedItems = currentItems.filter((item) => item.dish.id !== dish.id);
-    this.cartItems.next(updatedItems);
-  }
+removeFromCart(dish: any) {
+  const currentItems = this.cartItems.getValue();
+  const uniqueKey = this.generateUniqueKey(dish); // Generate a unique key for the dish
+  const updatedItems = currentItems.filter((item) => this.generateUniqueKey(item.dish) !== uniqueKey); // Use the unique key for comparison
+  this.cartItems.next(updatedItems); // Update the cart items
+  console.log('Cart Items after removal:', updatedItems); // Log the updated cart items
+}
 
   increaseQuantity(dish: any) {
     const currentItems = this.cartItems.getValue();

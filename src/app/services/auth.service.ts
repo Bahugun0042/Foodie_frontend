@@ -13,9 +13,19 @@ export class AuthService {
   login(email: string, password: string, role: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const loginData = { email, password, role };
-    return this.http.post(`${this.apiUrl}/login`, loginData, { headers });
+    if (role === 'customer'){
+      return this.http.post(`${this.apiUrl}/login/customer`, loginData, { headers });
+  }
+    else if (role === 'restaurant'){
+      return this.http.post(`${this.apiUrl}/login/restaurant`, loginData, { headers });
+  }
+    else if( role === 'delivery'){
+      return this.http.post(`${this.apiUrl}/login/delivery`, loginData, { headers });
+  } else {
+    throw new Error('Invalid role');
   }
   
+  }
 
   logout(): Observable<any> {
     return this.http.get(`${this.apiUrl}/logout`);

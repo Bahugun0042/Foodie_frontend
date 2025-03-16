@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { loadStripe, StripeElements, StripeCardElement } from '@stripe/stripe-js';
+import { OrderService } from '../../services/order.service'; // Import OrderService
 
 @Component({
   selector: 'app-checkout',
@@ -27,6 +28,7 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private router: Router,
+    private orderService: OrderService, // Inject OrderService
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // Get cart items from the service
@@ -122,21 +124,42 @@ export class CheckoutComponent implements OnInit {
       }
     }
 
+    // Fetch customerId from local storage
+    const customerId = localStorage.getItem('userId');
+
+    if (!customerId) {
+      console.error('Customer ID not found in local storage');
+      this.isProcessing = false;
+      return;
+    }
+
+    // Create the order object
     const order = {
+      customerId: customerId, // Include customerId
       items: this.cartItems,
       deliveryAddress: this.deliveryAddress,
       paymentMethod: this.paymentMethod,
       totalPrice: this.getTotalPrice(),
       status: 'Order Placed', // Initial status
+      createdAt: new Date().toISOString(), // Add a timestamp
     };
 
     console.log('Order confirmed:', order); // For debugging
-    this.paymentSuccess = true;
 
-    // Clear the cart and navigate to the order tracking page
-    setTimeout(() => {
-      this.cartService.clearCart();
-      this.router.navigate(['/customer/order-tracking'], { state: { order } });
-    }, 2000); // Redirect after 2 seconds
+    // Send the order to the backend
+    this.orderService.createOrder(order).subscribe({
+      next: (response) => {
+        console.log('Order created:', response);
+        this.paymentSuccess = true;
+        this.cartService.clearCart(); // Clear the cart
+        setTimeout(() => {
+          this.router.navigate(['/customer/order-tracking'], { state: { order: response } });
+        }, 2000);
+      },
+      error: (error) => {
+        console.error('Error creating order:', error);
+        this.isProcessing = false;
+      },
+    });
   }
 }

@@ -1,1 +1,29 @@
-<p>menu works!</p>
+<div class="container mt-4">
+  <h2>Orders for {{ restaurantName }}</h2>
+  <div *ngIf="orders.length > 0; else noOrders">
+    <div class="card mb-3" *ngFor="let order of orders; let i = index">
+      <div class="card-body">
+        <h5 class="card-title">Order ID: {{ i + 1 }}</h5>
+        <p class="card-text">
+          <strong>Customer ID:</strong> {{ order.customerId }}<br />
+          <strong>Delivery Address:</strong> {{ order.deliveryAddress }}<br />
+          <strong>Payment Method:</strong> {{ order.paymentMethod }}<br />
+          <strong>Total Price:</strong> {{ order.totalPrice }}<br />
+          <strong>Status:</strong> {{ order.status }}<br />
+          <strong>Created At:</strong> {{ order.createdAt | date : "medium" }}
+        </p>
+        <h6>Items:</h6>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let item of order.items">
+            <strong>{{ item.dish.dishName }}</strong> ({{ item.quantity }} x
+            {{ item.dish.price }} Rs )
+            <p>{{ item.dish.description }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <ng-template #noOrders>
+    <div class="alert alert-info">No orders found for this restaurant.</div>
+  </ng-template>
+</div>

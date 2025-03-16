@@ -1,11 +1,7 @@
 /* Navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #13b69d !important;
   padding: 1rem 2rem;
-  background-color: #13b69d;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar {
@@ -40,28 +36,25 @@
   cursor: pointer;
 }
 
+/* Fix cart badge to make it a perfect circle */
 .cart .badge {
   position: absolute;
   top: -10px;
   right: -10px;
   background-color: #ff6f61;
   color: white;
-  border-radius: 50%;
+  border-radius: 50%; /* Ensure it's a perfect circle */
   padding: 0.2rem 0.5rem;
   font-size: 0.8rem;
+  width: 20px; /* Fixed width */
+  height: 20px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Dish Grid */
-.dish-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-}
-
 .dish-card {
-  display: flex;
-  flex-direction: column;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -81,36 +74,31 @@
   object-fit: cover;
 }
 
-.dish-details {
-  flex: 1;
+.card-body {
   padding: 1.5rem;
 }
 
-.dish-details h3 {
-  margin: 0 0 0.5rem 0;
+.card-title {
   font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
-.dish-details p {
-  margin: 0.5rem 0;
+.card-text {
   font-size: 0.9rem;
   color: #2d3748;
+  margin-bottom: 0.5rem;
 }
 
-.dish-details button {
+.btn-primary {
   background-color: #ff6f61;
-  color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
   transition: background-color 0.3s ease;
 }
 
-.dish-details button:hover {
+.btn-primary:hover {
   background-color: #ff3b2f;
 }
+
 .cart-logout-container {
   display: flex;
   align-items: center;
@@ -129,4 +117,10 @@
 
 .logout-btn:hover {
   background-color: #e05750;
+}
+/* Remove blue outline on search bar focus */
+.search-bar input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #12a594; /* Keep the border color consistent */
 }

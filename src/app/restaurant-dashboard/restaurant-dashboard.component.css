@@ -1,0 +1,90 @@
+/* Navbar */
+.navbar {
+  background-color: #13b69d !important;
+  padding: 1rem 2rem;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white !important;
+}
+
+.nav-link {
+  color: white !important;
+  font-size: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff6f61 !important;
+}
+
+/* Welcome Section */
+.text-danger {
+  color: #ff6f61 !important;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+/* Cards */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.btn-primary {
+  background-color: #ff6f61;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ff3b2f;
+}
+
+/* Container for Cards */
+.container {
+  padding: 2rem;
+}
+
+/* Router Outlet */
+router-outlet {
+  margin-top: 2rem;
+}
+.logout-btn {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  background-color: #e05750;
+}
